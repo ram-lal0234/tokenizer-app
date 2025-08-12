@@ -1,59 +1,132 @@
 # TokenizerApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+A modern, interactive text tokenization application built with Angular 20 and TypeScript. This application provides real-time text encoding, decoding, and visualization capabilities with a beautiful dark-themed UI.
 
-## Development server
+## 🚀 Features
 
-To start a local development server, run:
+- **Text Encoding**: Convert text into tokens using custom tokenization algorithms
+- **Text Decoding**: Reconstruct original text from token sequences
+- **Real-time Visualization**: Interactive display of encoded tokens and vocabulary
+- **Dark Theme UI**: Modern, responsive design with smooth animations
+- **Vocabulary Management**: Dynamic vocabulary building and display
+- **Error Handling**: Comprehensive error handling with user-friendly messages
+- **Accessibility**: Built with accessibility best practices
 
-```bash
-ng serve
+## 🛠️ Tech Stack
+
+- **Frontend**: Angular 20 with TypeScript
+- **Styling**: Tailwind CSS with custom dark theme
+- **State Management**: Angular Signals
+- **Build Tool**: Angular CLI
+- **Package Manager**: npm
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ram-lal0234/tokenizer-app.git
+   cd tokenizer-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   ng serve
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:4200/` to view the application.
+
+## 🏗️ Development
+
+### Prerequisites
+- Node.js (v20.19+ or v22.12+)
+- npm or yarn
+
+### Available Scripts
+
+- **Development Server**: `npm start` or `ng serve`
+- **Build**: `npm run build` or `ng build`
+- **Watch Mode**: `npm run watch` or `ng build --watch`
+- **Testing**: `npm test` or `ng test`
+- **Linting**: `ng lint`
+
+### Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── tokenizer/          # Main tokenizer component
+│   │   ├── encoded-tokens/     # Token display component
+│   │   ├── decoded-text/       # Decoded text component
+│   │   └── vocabulary-display/ # Vocabulary visualization
+│   ├── services/
+│   │   └── tokenizer.service.ts # Core tokenization logic
+│   ├── app.component.ts        # Root component
+│   ├── app.routes.ts          # Application routing
+│   └── app.config.ts          # App configuration
+├── styles.css                 # Global styles
+└── main.ts                    # Application entry point
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🎨 UI Components
 
-## Code scaffolding
+- **Tokenizer Component**: Main interface for text encoding/decoding
+- **Encoded Tokens Display**: Visual representation of tokenized text
+- **Decoded Text Output**: Reconstructed text from tokens
+- **Vocabulary Display**: Interactive vocabulary management
+- **Status Indicators**: Real-time training and vocabulary status
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🔧 Configuration
 
+The application uses Angular's modern standalone components and follows best practices:
+
+- **Change Detection**: OnPush strategy for optimal performance
+- **Component Architecture**: Standalone components with dependency injection
+- **TypeScript**: Strict type checking enabled
+- **Styling**: Tailwind CSS with custom dark theme
+
+## 🚀 Deployment
+
+### Production Build
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Build Output
+The build artifacts will be stored in the `dist/` directory, optimized for production deployment.
 
-```bash
-ng generate --help
-```
+## 🤝 Contributing
 
-## Building
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-To build the project run:
+## 📝 License
 
-```bash
-ng build
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 👨‍💻 Author
 
-## Running unit tests
+**Ramlal**
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **LinkedIn**: [Ramlal](https://www.linkedin.com/in/ramlal24/)
+- **X (Twitter)**: [@Ramlal_24](https://x.com/Ramlal_24)
+- **GitHub**: [ram-lal0234](https://github.com/ram-lal0234/tokenizer-app)
 
-```bash
-ng test
-```
+## 🙏 Acknowledgments
 
-## Running end-to-end tests
+- Built with [Angular](https://angular.io/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Icons from various open-source icon libraries
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+⭐ If you find this project helpful, please give it a star on GitHub!
