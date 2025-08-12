@@ -1,59 +1,120 @@
-# TokenizerApp
+# Custom Tokenizer - Full Stack Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+A complete text tokenization application with a modern Angular frontend and Node.js backend API.
 
-## Development server
+## 🏗️ Project Structure
 
-To start a local development server, run:
-
-```bash
-ng serve
+```
+tokenizer-app/
+├── src/                    # Angular frontend application
+│   └── app/
+│       ├── components/     # UI components
+│       └── services/       # Frontend services
+├── backend/                # Node.js backend API
+│   ├── server.js          # Express server
+│   ├── tokenizer.js       # Tokenization logic
+│   └── README-API.md      # Backend documentation
+├── package.json            # Frontend dependencies
+└── README.md               # This file
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Features
 
-## Code scaffolding
+### Frontend (Angular)
+- **Dark Mode UI**: Modern, responsive interface with Tailwind CSS
+- **Real-time Tokenization**: Encode and decode text with live visualization
+- **Copy Functionality**: Copy tokens in multiple formats (space-separated, JSON array, text)
+- **Vocabulary Display**: Complete view of all tokens and their types
+- **Component Architecture**: Modular, maintainable code structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Backend (Node.js)
+- **RESTful API**: Clean HTTP endpoints for tokenization operations
+- **Local Tokenization**: No external dependencies, works completely offline
+- **Special Token Support**: Built-in PAD, UNK, START, END tokens
+- **Auto-training**: Automatically builds vocabulary on first encode
 
+## 🛠️ Technology Stack
+
+- **Frontend**: Angular 20, Tailwind CSS, TypeScript
+- **Backend**: Node.js, Express.js
+- **Architecture**: Standalone components, RESTful API
+
+## 📦 Installation & Setup
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### 1. Install Dependencies
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+### 2. Start the Backend API
 ```bash
-ng generate --help
+cd backend
+npm install
+npm run dev
+```
+The API will start on `http://localhost:3000`
+
+### 3. Start the Frontend (in a new terminal)
+```bash
+npm start
+```
+The Angular app will open at `http://localhost:4200`
+
+## 🔧 Usage
+
+### API Endpoints
+- **POST** `/encode` - Convert text to token IDs
+- **POST** `/decode` - Convert token IDs back to text
+- **POST** `/reset` - Clear vocabulary and start fresh
+
+### Frontend Features
+1. **Encode Text**: Enter any text to see it converted to token IDs
+2. **Decode Tokens**: Enter token IDs to see the original text
+3. **Visualize**: See detailed token mapping in tables
+4. **Copy Data**: Copy tokens, arrays, or text in various formats
+
+## 🎯 Key Components
+
+- **Tokenizer Component**: Main application interface
+- **Encoded Tokens**: Display and copy encoded results
+- **Decoded Text**: Show decoded text with copy option
+- **Vocabulary Display**: Complete token vocabulary table
+
+## 🚧 Development
+
+### Adding New Components
+```bash
+ng generate component components/new-component
 ```
 
-## Building
-
-To build the project run:
-
+### Building for Production
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+### Testing
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+## 📄 License
 
-For end-to-end (e2e) testing, run:
+This project is licensed under the ISC License.
 
-```bash
-ng e2e
-```
+## 🤝 Contributing
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-## Additional Resources
+## 🔗 Links
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Frontend**: Angular application with dark mode UI
+- **Backend**: Node.js tokenization API
+- **Documentation**: See `backend/README-API.md` for detailed API docs 
