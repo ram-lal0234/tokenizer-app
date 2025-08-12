@@ -1,0 +1,1 @@
+export { DecodedTextComponent } from './decoded-text'; 

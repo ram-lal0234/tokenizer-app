@@ -1,0 +1,1 @@
+export { TokenizerComponent } from './tokenizer'; 

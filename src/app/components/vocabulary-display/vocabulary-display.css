@@ -1,0 +1,40 @@
+/* Vocabulary Display Component Styles */
+.vocabulary-table {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Table row hover effects */
+tbody tr:hover {
+  background-color: #1f2937;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Copy button hover effects */
+button:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for tables */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #374151;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+} 
