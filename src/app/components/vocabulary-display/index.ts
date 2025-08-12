@@ -1,1 +1,0 @@
-export { VocabularyDisplayComponent } from './vocabulary-display'; 

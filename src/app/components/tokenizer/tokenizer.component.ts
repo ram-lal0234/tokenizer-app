@@ -1,10 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenizerService, EncodeRequest, DecodeRequest } from '../../services/tokenizer.service';
-import { EncodedTokensComponent } from '../encoded-tokens';
-import { DecodedTextComponent } from '../decoded-text';
-import { VocabularyDisplayComponent } from '../vocabulary-display';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import {
+  TokenizerService,
+  EncodeRequest,
+  DecodeRequest,
+} from '../../services/tokenizer.service';
+import { EncodingComponent } from '../encoding/encoding.component';
+import { DecodingComponent } from '../decoding/decoding.component';
+import { VisulizationComponent } from '../visulization/visulization.component';
 
 interface TokenInfo {
   id: number;
@@ -14,44 +24,50 @@ interface TokenInfo {
 
 @Component({
   selector: 'app-tokenizer',
-  standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
+    CommonModule,
+    FormsModule,
     ReactiveFormsModule,
-    EncodedTokensComponent,
-    DecodedTextComponent,
-    VocabularyDisplayComponent
+    EncodingComponent,
+    DecodingComponent,
+    VisulizationComponent,
   ],
-  templateUrl: './tokenizer.html',
-  styleUrls: ['./tokenizer.css']
+  templateUrl: './tokenizer.component.html',
+  styleUrl: './tokenizer.component.css',
 })
-export class TokenizerComponent implements OnInit {
+export class TokenizerComponent {
   encodeForm: FormGroup;
   decodeForm: FormGroup;
-  
+
   encodedTokens: number[] = [];
   decodedText: string = '';
   tokenDetails: TokenInfo[] = [];
   isLoading: boolean = false;
   errorMessage: string = '';
   successMessage: string = '';
-  
+
   // Vocabulary information
   vocabularySize: number = 0;
-  vocabularyEntries: Array<{word: string, id: number}> = [];
+  vocabularyEntries: Array<{ word: string; id: number }> = [];
   isTrained: boolean = false;
+
+  exampleTexts = [
+    'Hello world this is a test',
+    'Angular 20 makes development fun',
+    'Custom tokenizer example data',
+    'This is a test of the tokenizer, it should be able to handle this text',
+  ];
 
   constructor(
     private fb: FormBuilder,
     private tokenizerService: TokenizerService
   ) {
     this.encodeForm = this.fb.group({
-      text: ['', [Validators.required, Validators.minLength(1)]]
+      text: ['', [Validators.required, Validators.minLength(1)]],
     });
 
     this.decodeForm = this.fb.group({
-      tokens: ['', [Validators.required, Validators.pattern(/^[\d\s,]+$/)]]
+      tokens: ['', [Validators.required, Validators.pattern(/^[\d\s,]+$/)]],
     });
   }
 
@@ -66,7 +82,7 @@ export class TokenizerComponent implements OnInit {
       this.successMessage = '';
 
       const request: EncodeRequest = {
-        text: this.encodeForm.get('text')?.value
+        text: this.encodeForm.get('text')?.value,
       };
 
       this.tokenizerService.encodeText(request).subscribe({
@@ -80,7 +96,7 @@ export class TokenizerComponent implements OnInit {
         error: (error) => {
           this.errorMessage = error.message || 'Failed to encode text';
           this.isLoading = false;
-        }
+        },
       });
     }
   }
@@ -92,7 +108,10 @@ export class TokenizerComponent implements OnInit {
       this.successMessage = '';
 
       const tokensInput = this.decodeForm.get('tokens')?.value;
-      const tokens = tokensInput.split(/[\s,]+/).map((t: string) => parseInt(t.trim())).filter((t: number) => !isNaN(t));
+      const tokens = tokensInput
+        .split(/[\s,]+/)
+        .map((t: string) => parseInt(t.trim()))
+        .filter((t: number) => !isNaN(t));
 
       const request: DecodeRequest = { tokens };
 
@@ -105,7 +124,7 @@ export class TokenizerComponent implements OnInit {
         error: (error) => {
           this.errorMessage = error.message || 'Failed to decode tokens';
           this.isLoading = false;
-        }
+        },
       });
     }
   }
@@ -127,7 +146,7 @@ export class TokenizerComponent implements OnInit {
       error: (error) => {
         this.errorMessage = error.message || 'Failed to reset tokenizer';
         this.isLoading = false;
-      }
+      },
     });
   }
 
@@ -135,7 +154,7 @@ export class TokenizerComponent implements OnInit {
     const words = originalText.split(/\s+/);
     this.tokenDetails = tokens.map((tokenId, index) => {
       let type: 'special' | 'word' | 'unknown' = 'word';
-      
+
       if (tokenId <= 3) {
         type = 'special';
       } else if (tokenId === 1) {
@@ -145,7 +164,7 @@ export class TokenizerComponent implements OnInit {
       return {
         id: tokenId,
         text: words[index] || `<ID:${tokenId}>`,
-        type
+        type,
       };
     });
   }
@@ -153,7 +172,7 @@ export class TokenizerComponent implements OnInit {
   private updateVocabularyInfo(): void {
     this.vocabularySize = this.tokenizerService.getVocabularySize();
     this.isTrained = this.tokenizerService.isTokenTrained();
-    
+
     const vocab = this.tokenizerService.getVocabulary();
     this.vocabularyEntries = Array.from(vocab.entries())
       .map(([word, id]) => ({ word, id }))
@@ -173,20 +192,28 @@ export class TokenizerComponent implements OnInit {
   // Helper method to get token type for display
   getTokenTypeDisplay(type: 'special' | 'word' | 'unknown'): string {
     switch (type) {
-      case 'special': return 'Special';
-      case 'word': return 'Word';
-      case 'unknown': return 'Unknown';
-      default: return 'Unknown';
+      case 'special':
+        return 'Special';
+      case 'word':
+        return 'Word';
+      case 'unknown':
+        return 'Unknown';
+      default:
+        return 'Unknown';
     }
   }
 
   // Helper method to get token type color class
   getTokenTypeColorClass(type: 'special' | 'word' | 'unknown'): string {
     switch (type) {
-      case 'special': return 'bg-purple-900 text-purple-200 border-purple-700';
-      case 'word': return 'bg-green-900 text-green-200 border-green-700';
-      case 'unknown': return 'bg-red-900 text-red-200 border-red-700';
-      default: return 'bg-gray-900 text-gray-200 border-gray-700';
+      case 'special':
+        return 'bg-purple-900 text-purple-200 border-purple-700';
+      case 'word':
+        return 'bg-green-900 text-green-200 border-green-700';
+      case 'unknown':
+        return 'bg-red-900 text-red-200 border-red-700';
+      default:
+        return 'bg-gray-900 text-gray-200 border-gray-700';
     }
   }
-} 
+}

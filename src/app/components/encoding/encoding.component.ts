@@ -2,16 +2,15 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-encoded-tokens',
-  standalone: true,
+  selector: 'app-encoding',
   imports: [CommonModule],
-  templateUrl: './encoded-tokens.html',
-  styleUrls: ['./encoded-tokens.css']
+  templateUrl: './encoding.component.html',
+  styleUrl: './encoding.component.css',
 })
-export class EncodedTokensComponent {
+export class EncodingComponent {
   @Input() encodedTokens: number[] = [];
   @Input() originalText: string = '';
-  
+
   copiedMessage: string = '';
 
   copyTokens(): void {
@@ -40,4 +39,4 @@ export class EncodedTokensComponent {
       this.copiedMessage = '';
     }, 2000);
   }
-} 
+}

@@ -56,9 +56,9 @@ export class TokenizerService {
       const words = text.trim().split(/\s+/);
       const tokens: number[] = [];
 
-      // If this is the first encode, train the tokenizer
+      // Always train on new words to expand vocabulary
+      this.trainOnText(words);
       if (!this.isTrained) {
-        this.trainOnText(words);
         this.isTrained = true;
       }
 

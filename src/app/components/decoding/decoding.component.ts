@@ -2,15 +2,14 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-decoded-text',
-  standalone: true,
+  selector: 'app-decoding',
   imports: [CommonModule],
-  templateUrl: './decoded-text.html',
-  styleUrls: ['./decoded-text.css']
+  templateUrl: './decoding.component.html',
+  styleUrl: './decoding.component.css',
 })
-export class DecodedTextComponent {
+export class DecodingComponent {
   @Input() decodedText: string = '';
-  
+
   copiedMessage: string = '';
 
   copyText(): void {
@@ -25,4 +24,4 @@ export class DecodedTextComponent {
       this.copiedMessage = '';
     }, 2000);
   }
-} 
+}

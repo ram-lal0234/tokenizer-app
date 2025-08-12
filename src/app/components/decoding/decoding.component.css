@@ -1,0 +1,15 @@
+/* Decoded Text Component Styles */
+.decoded-text {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Copy button hover effects */
+  button:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition: all 0.2s ease-in-out;
+  } 
